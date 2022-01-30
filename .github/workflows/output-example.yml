@@ -10,15 +10,16 @@ jobs:
         run: |
           echo '::set-output name=FAV_NUMBER::3'
           echo '::set-output name=FAV_COLOR::blue'
-        id: abc
+        id: id-for-set-output
 
       - name: read-output
         run: |
-          echo '${{steps.abc.outputs.FAV_NUMBER}}'
-          echo '${{steps.abc.outputs.FAV_COLOR}}'
+          echo '${{steps.id-for-set-output.outputs.FAV_NUMBER}}'
+          echo '${{steps.id-for-set-output.outputs.FAV_COLOR}}'
+    # 다른 job에서 사용할 수 있도록 output
     outputs:
       fav-animal: tiger
-      fav-number: ${{steps.abc.outputs.FAV_NUMBER}}
+      fav-number: ${{steps.id-for-set-output.outputs.FAV_NUMBER}}
 
   output-example-2:
     runs-on: ubuntu-latest
@@ -27,5 +28,5 @@ jobs:
     steps:
       - name: print output from job 1
         run: |
-          echo "${{needs.job1.outputs.fav-animal}}"
-          echo "${{needs.job1.outputs.fav-number}}"
+          echo "${{needs.output-example-1.outputs.fav-animal}}"
+          echo "${{needs.output-example-1.outputs.fav-number}}"
