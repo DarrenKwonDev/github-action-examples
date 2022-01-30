@@ -18,3 +18,7 @@ jobs:
       - name: print if contain 'v'
         if: ${{ contains(matrix.name, 'v') }}
         run: echo "${{ matrix.name }}"
+
+      - name: print if end with 'n'
+        if: ${{ endsWith(matrix.name, 'n') }}
+        run: echo "${{ matrix.name }}"
