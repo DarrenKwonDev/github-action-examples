@@ -2,11 +2,11 @@ name: hello-world-example
 on:
   push:
     branches:
-      - "staging"
+      - "dev/**"
       - "!main"
   pull_request:
     branches:
-      - "dev/**"
+      - "staging"
 
 jobs:
   say-hello:
