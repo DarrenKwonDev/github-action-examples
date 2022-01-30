@@ -21,3 +21,12 @@ jobs:
         # 특정 step scope 내에서 유효한 env
         env:
           secret: "reptilian"
+
+      - name: default env
+        run: |
+          echo "triggered by a ${{ github.event_name }} event"
+          echo "running on a ${{ runner.os }} server"
+          echo "this github ref is ${{ github.ref }}"
+          echo "this github repo is ${{ github.repository }}"
+          echo "this commit sha is ${{ github.sha }}"
+          echo "workspace is ${{ github.workspace }}"
