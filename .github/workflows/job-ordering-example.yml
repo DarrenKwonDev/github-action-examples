@@ -1,0 +1,19 @@
+name: job-ordering-example
+on:
+  push:
+    branches: ["*"]
+jobs:
+  job-1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo wassup
+        run: echo "wassup"
+
+  job-2:
+    runs-on: ubuntu-latest
+    # job-1이 끝나야 job-2를 돌리겠다
+    needs: job-1
+    steps:
+      - name: echo hi
+        run: echo "hi"
+        shell: bash
