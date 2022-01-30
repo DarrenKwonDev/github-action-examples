@@ -1,0 +1,20 @@
+name: expression-example
+on:
+  push:
+    branches: ["*"]
+jobs:
+  expression-example:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        name: ["darren", "david", "martin"]
+
+    steps:
+      - name: print if start with 'd'
+        if: ${{ startsWith(matrix.name, 'd') }}
+        run: echo "${{ matrix.name }}"
+
+      - name: print if contain 'v'
+        if: ${{ contains(matrix.name, 'v') }}
+        run: echo "${{ matrix.name }}"
