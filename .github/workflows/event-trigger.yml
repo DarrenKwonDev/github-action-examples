@@ -1,0 +1,24 @@
+name: hello-world-example
+on:
+  push:
+    branches:
+      # dev- 꼴로 시작하는 branch에 push 되었을 때 workflow trigger
+      - "dev-*"
+  pull_request:
+    branches:
+      # staging를 target으로 pull_request 되었을 때 workflow trigger
+      - "staging"
+
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say Hello
+        run: echo "Hello world!"
+      - name: Do stuff
+        run: |
+          echo "Step 1..."
+          echo "Step 2..."
+          echo "Step 3..."
+      - name: Triggered by
+        run: echo "Triggered by ${{ github.event_name }}"
