@@ -10,10 +10,6 @@ jobs:
         # 2*2 이므로 총 4가지 경우의 job이 발생함
         os: [ubuntu-latest, ubuntu-18.04]
         node-version: [12, 14]
-        # 단, 아래 케이스는 exclude 처리함
-        exclude:
-          - os: [ubuntu-latest]
-            node-version: [12]
 
     runs-on: ${{matrix.os}}
 
