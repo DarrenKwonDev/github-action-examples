@@ -1,0 +1,31 @@
+name: output-example
+on:
+  push:
+    branches: ["*"]
+jobs:
+  output-example-1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: set-output
+        run: |
+          echo '::set-output name=FAV_NUMBER::3'
+          echo '::set-output name=FAV_COLOR::blue'
+        id: abc
+
+      - name: read-output
+        run: |
+          echo '${{steps.abc.outputs.FAV_NUMBER}}'
+          echo '${{steps.abc.outputs.FAV_COLOR}}'
+    outputs:
+      fav-animal: tiger
+      fav-number: ${{steps.abc.outputs.FAV_NUMBER}}
+
+  output-example-2:
+    runs-on: ubuntu-latest
+    # output-example-1에서 out한 값을 써야하기 때문에 output-example-1이 끝난 후에 job이 돌아야 함
+    needs: output-example-1
+    steps:
+      - name: print output from job 1
+        run: |
+          echo "${{needs.job1.outputs.fav-animal}}"
+          echo "${{needs.job1.outputs.fav-number}}"
