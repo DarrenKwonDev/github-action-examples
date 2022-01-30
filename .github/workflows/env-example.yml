@@ -1,0 +1,23 @@
+name: env-example
+on:
+  push:
+    branches: ["*"]
+
+# workflow 전체에서 유효한 env
+env:
+  name: "Mark Zuckerberg"
+
+jobs:
+  env-example:
+    runs-on: ubuntu-latest
+
+    # 특정 job scope 내에서 유효한 env
+    env:
+      age: 37
+
+    steps:
+      - name: say my name
+        run: echo "${{ env.name }} is ${{env.age}} years old. he's secret is ${{env.secret}}"
+        # 특정 step scope 내에서 유효한 env
+        env:
+          secret: "reptilian"
