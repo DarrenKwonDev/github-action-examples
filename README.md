@@ -1,7 +1,5 @@
 # github-action-example
 
-##
-
-based on
+based on  
 https://docs.github.com/en/actions  
 https://www.actionsbyexample.com/
